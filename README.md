@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +26,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
         
+        /* Ensure HTML and Body take full height securely */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -64,27 +71,28 @@
         }
     </style>
 </head>
-<body class="bg-gray-200 text-slate-900 h-screen flex flex-col overflow-hidden selection:bg-indigo-100 selection:text-indigo-900">
+<body class="bg-white text-slate-900 h-[100dvh] flex flex-col overflow-hidden selection:bg-indigo-100 selection:text-indigo-900">
 
-    <!-- App Container: max-w-[95%] for better browser experience -->
-    <div class="w-full max-w-[95%] h-full mx-auto flex flex-col bg-slate-50 shadow-2xl">
+    <!-- App Container: Changed to w-full and h-full to fill screen completely -->
+    <div class="w-full h-full flex flex-col bg-white">
 
     <!-- Header -->
-    <header class="bg-white border-b border-slate-200 px-6 py-3 flex items-center justify-between shadow-sm shrink-0 z-10">
+    <header class="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-sm shrink-0 z-10">
         <div class="flex items-center gap-3">
             <div class="bg-indigo-600 text-white p-2 rounded-lg shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
             </div>
             <div>
                 <h1 class="font-bold text-lg tracking-tight text-slate-800">JSON <span class="text-slate-400 mx-1">→</span> YAML</h1>
-                <p class="text-xs text-slate-500 font-medium">即时转换 • 浏览器本地运行</p>
+                <p class="text-xs text-slate-500 font-medium hidden sm:block">即时转换 • 浏览器本地运行</p>
             </div>
         </div>
 
         <div class="flex items-center gap-3">
              <div id="status-indicator" class="hidden px-3 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-700 items-center gap-1.5 transition-all">
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                JSON 有效
+                <span class="hidden sm:inline">JSON 有效</span>
+                <span class="sm:hidden">有效</span>
             </div>
             <button onclick="clearAll()" class="text-sm font-medium text-slate-500 hover:text-red-600 px-3 py-2 rounded-md hover:bg-red-50 transition-colors" title="清空所有内容">
                 清空
@@ -92,12 +100,12 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col md:flex-row h-full overflow-hidden relative">
+    <!-- Main Content: Changed md:flex-row to sm:flex-row to allow side-by-side on smaller screens -->
+    <main class="flex-1 flex flex-col sm:flex-row h-full overflow-hidden relative">
         
         <!-- Input Section -->
-        <div class="flex-1 flex flex-col border-b md:border-b-0 md:border-r border-slate-200 h-1/2 md:h-full min-h-0 bg-white">
-            <div class="px-4 py-1.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center shrink-0">
+        <div class="flex-1 flex flex-col border-b sm:border-b-0 sm:border-r border-slate-200 h-1/2 sm:h-full min-h-0 bg-white">
+            <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 flex justify-between items-center shrink-0">
                 <label for="json-input" class="text-xs font-semibold text-slate-500 uppercase tracking-wider">输入: JSON</label>
                 <button onclick="pasteFromClipboard()" class="text-xs flex items-center gap-1.5 bg-white border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 text-slate-600 px-2 py-1 rounded shadow-sm transition-all" title="从剪贴板粘贴">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -127,8 +135,8 @@
         </div>
 
         <!-- Output Section -->
-        <div class="flex-1 flex flex-col h-1/2 md:h-full min-h-0 bg-slate-50/50">
-            <div class="px-4 py-1.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center shrink-0">
+        <div class="flex-1 flex flex-col h-1/2 sm:h-full min-h-0 bg-slate-50/50">
+            <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 flex justify-between items-center shrink-0">
                 <label for="yaml-output" class="text-xs font-semibold text-slate-500 uppercase tracking-wider">输出: YAML</label>
                 <button onclick="copyToClipboard()" id="copy-btn" class="text-xs flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded shadow-sm transition-all transform active:scale-95" title="复制 YAML 到剪贴板">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -205,7 +213,7 @@
             // Status pill
             statusIndicator.classList.remove('hidden', 'bg-green-100', 'text-green-700');
             statusIndicator.classList.add('bg-red-100', 'text-red-700');
-            statusIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-500"></span> 格式错误';
+            statusIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-500"></span> <span class="hidden sm:inline">格式错误</span><span class="sm:hidden">错误</span>';
         }
 
         function hideError() {
@@ -216,7 +224,7 @@
         function showSuccess() {
             statusIndicator.classList.remove('hidden', 'bg-red-100', 'text-red-700');
             statusIndicator.classList.add('bg-green-100', 'text-green-700');
-            statusIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-green-500"></span> 有效 JSON';
+            statusIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-green-500"></span> <span class="hidden sm:inline">有效 JSON</span><span class="sm:hidden">有效</span>';
         }
 
         function hideStatus() {
