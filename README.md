@@ -48,7 +48,10 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 h-screen flex flex-col overflow-hidden selection:bg-indigo-100 selection:text-indigo-900">
+<body class="bg-gray-200 text-slate-900 h-screen flex flex-col overflow-hidden selection:bg-indigo-100 selection:text-indigo-900">
+
+    <!-- App Container -->
+    <div class="w-full max-w-[1280px] h-full mx-auto flex flex-col bg-slate-50 shadow-2xl">
 
     <!-- Header -->
     <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm shrink-0 z-10">
@@ -126,6 +129,8 @@
             </div>
         </div>
     </main>
+
+    </div>
 
     <script>
         // DOM Elements
