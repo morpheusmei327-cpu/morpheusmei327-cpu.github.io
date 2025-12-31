@@ -19,8 +19,8 @@
     </td>
 
     <td width="33%">
-      <a href="[你的链接地址2]">
-        <img src="[你的图片链接2]" width="100%" height="auto" alt="封面图">
+      <a href="./tools/m3u8sniffer">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.--8IdXSgl3n8PGJ0HfEaWgHaLG?rs=1&pid=ImgDetMain&o=7&rm=3" width="100%" height="auto" alt="封面图">
       </a>
       <br />
       <h3 align="center">[项目标题 2]</h3>
