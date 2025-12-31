@@ -7,17 +7,15 @@
         <img src="https://th.bing.com/th/id/R.e29d1c4f332fe8954da6027e3b16a892?rik=%2bU0z%2bzsqYteCTQ&pid=ImgRaw&r=0" width="100%" height="auto" alt="封面图">
       </a>
       <br />
-      <h3 align="center">JSON2YAML</h3>
       <p align="center">JSON TO YAML工具</p>
     </td>
     
     <td width="33%">
-      <a href="[你的链接地址2]">
-        <img src="[你的图片链接2]" width="100%" height="auto" alt="封面图">
+      <a href="./tools/gobang">
+        <img src="https://th.bing.com/th/id/R.e29d1c4f332fe8954da6027e3b16a892?rik=%2bU0z%2bzsqYteCTQ&pid=ImgRaw&r=0" width="100%" height="auto" alt="封面图">
       </a>
       <br />
-      <h3 align="center">[项目标题 2]</h3>
-      <p align="center">[这里写一段简短的描述，介绍这个链接是做什么的]</p>
+      <p align="center">五子棋</p>
     </td>
 
     <td width="33%">
