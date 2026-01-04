@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的导航主页</title>
+    <style>
+        /* === 全局样式 === */
+        :root {
+            --bg-color: #f4f6f8;       /* 背景颜色 */
+            --card-bg: #ffffff;        /* 卡片背景 */
+            --text-main: #333333;      /* 主文字颜色 */
+            --text-sub: #666666;       /* 副文字颜色 */
+            --hover-shadow: 0 8px 15px rgba(0,0,0,0.1); /* 悬停阴影 */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        header p {
+            color: var(--text-sub);
+        }
+
+        /* === 核心布局：三列网格 === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            /* 这里定义了3列，minmax保证在窄屏幕不挤压 */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 25px; /* 卡片之间的间距 */
+        }
+
+        /* === 响应式：手机端变为1列 === */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* === 卡片样式 === */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none; /* 去掉链接下划线 */
+            display: flex;
+            flex-direction: column;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* 鼠标悬停上浮 */
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* 图片容器，强制统一高度，防止图片大小不一导致乱版 */
+        .card-image {
+            width: 100%;
+            height: 180px; 
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保持比例填充，裁切多余部分 */
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05); /* 图片微放大特效 */
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Personal Nav</h1>
+        <p>常用工具与站点导航</p>
+    </header>
+
+    <div class="container">
+
+        <a href="https://www.google.com" target="_blank" class="card">
+            <div class="card-image">
+                <img src="https://placehold.co/600x400/2980b9/ffffff?text=Google" alt="Google">
+            </div>
+            <div class="card-content">
+                <span class="card-title">Google 搜索</span>
+                <span class="card-desc">全球最大的搜索引擎，查资料必备。</span>
+            </div>
+        </a>
+
+        <a href="https://github.com" target="_blank" class="card">
+            <div class="card-image">
+                <img src="https://placehold.co/600x400/333333/ffffff?text=GitHub" alt="GitHub">
+            </div>
+            <div class="card-content">
+                <span class="card-title">GitHub</span>
+                <span class="card-desc">代码托管平台，开发者的乐园。</span>
+            </div>
+        </a>
+
+        <a href="https://www.bilibili.com" target="_blank" class="card">
+            <div class="card-image">
+                <img src="https://placehold.co/600x400/fb7299/ffffff?text=Bilibili" alt="Bilibili">
+            </div>
+            <div class="card-content">
+                <span class="card-title">哔哩哔哩</span>
+                <span class="card-desc">国内知名的视频弹幕网站，学习娱乐两不误。</span>
+            </div>
+        </a>
+
+        <a href="https://chatgpt.com" target="_blank" class="card">
+            <div class="card-image">
+                <img src="https://placehold.co/600x400/10a37f/ffffff?text=ChatGPT" alt="AI">
+            </div>
+            <div class="card-content">
+                <span class="card-title">ChatGPT</span>
+                <span class="card-desc">强大的 AI 助手，协助解决各种问题。</span>
+            </div>
+        </a>
+        
+        <a href="#" class="card">
+            <div class="card-image">
+                <img src="https://placehold.co/600x400/e67e22/ffffff?text=Tool" alt="Tool">
+            </div>
+            <div class="card-content">
+                <span class="card-title">待添加工具</span>
+                <span class="card-desc">这里是一个占位符，你可以随时替换。</span>
+            </div>
+        </a>
+
+        <a href="#" class="card">
+            <div class="card-image">
+                <img src="https://placehold.co/600x400/8e44ad/ffffff?text=Work" alt="Work">
+            </div>
+            <div class="card-content">
+                <span class="card-title">工作台</span>
+                <span class="card-desc">内部工作链接入口。</span>
+            </div>
+        </a>
+
+        </div>
+
+    <footer>
+        &copy; 2026 My Navigation. Hosted on GitHub Pages.
+    </footer>
+
+</body>
+</html>
