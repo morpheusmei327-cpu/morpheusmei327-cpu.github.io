@@ -4,7 +4,7 @@
   <tr>
     <td width="33%">
       <a href="./tools/json2yaml">
-        <img src="./assets/images/JSON2YAML.jpeg" width="400" height="150" alt="封面图">
+        <img src="./assets/blob/main/images/JSON2YAML.jpeg" width="400" height="150" alt="封面图">
       </a>
       <br />
       <p align="center">JSON TO YAML工具</p>
