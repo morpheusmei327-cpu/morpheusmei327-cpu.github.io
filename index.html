@@ -38,6 +38,29 @@
             color: var(--text-sub);
         }
 
+        /* === 新增：搜索框样式 === */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px; /* 圆角效果 */
+            outline: none;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(41, 128, 185, 0.2);
+        }
+        
         /* === 核心布局：三列网格 === */
         .container {
             max-width: 1200px;
@@ -108,6 +131,16 @@
             line-height: 1.5;
         }
 
+        /* === 新增：未找到结果时的提示 === */
+        #no-result-msg {
+            grid-column: 1 / -1; /* 让它横跨所有列 */
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 1.1rem;
+            display: none; /* 默认隐藏 */
+        }
+        
         /* 页脚 */
         footer {
             text-align: center;
@@ -195,11 +228,56 @@
             </div>
         </a>
 
+        <a href="https://ping.chinaz.com/" target="_blank" class="card">
+            <div class="card-image">
+                <img src="https://placehold.co/600x400/2980b9/ffffff?text=PINGTOOL" alt="PING">
+            </div>
+            <div class="card-content">
+                <span class="card-title">PINGTOOL</span>
+                <span class="card-desc">站长之家Ping测试工具</span>
+            </div>
+        </a>
+
         </div>
 
     <footer>
         &copy; 2026 Merlin's Navigation.
     </footer>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            // 1. 获取输入内容，并转为小写 (实现忽略大小写)
+            const searchText = e.target.value.toLowerCase().trim();
+            
+            // 2. 获取所有卡片
+            const cards = document.querySelectorAll('.card');
+            let hasVisibleCard = false;
+
+            // 3. 遍历每一个卡片
+            cards.forEach(card => {
+                // 获取卡片里的 img 标签
+                const img = card.querySelector('img');
+                // 获取 alt 内容，如果没有 alt 则默认为空字符串，并转为小写
+                const altText = img ? (img.getAttribute('alt') || "").toLowerCase() : "";
+
+                // 4. 判断 alt 是否包含输入的内容
+                if (altText.includes(searchText)) {
+                    card.style.display = 'flex'; // 匹配：显示 (恢复 flex 布局)
+                    hasVisibleCard = true;
+                } else {
+                    card.style.display = 'none'; // 不匹配：隐藏
+                }
+            });
+
+            // 5. 如果所有卡片都被隐藏了，显示“未找到结果”
+            const noResultMsg = document.getElementById('no-result-msg');
+            if (!hasVisibleCard) {
+                noResultMsg.style.display = 'block';
+            } else {
+                noResultMsg.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>
